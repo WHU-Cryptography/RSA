@@ -41,7 +41,7 @@ void rsa_sig_ver::sign(std::string inf_file, std::string sign_file, std::string 
 	this->hash = BigInteger(SM3::call_hash_sm3((char*)(inf_file.c_str())), 256, 1);
 	this->res_sign = this->hash.ModularExponentiation(this->hash, this->d, this->n);
 	fio.open(sign_file.c_str());
-	fio << this->res_sign.ToString();
+	fio << this->res_sign.ToHexString();
 	fio << '\n';
 	fio.close();
 }
